@@ -7,9 +7,9 @@ def leer():
     contador_lineas=1
     for linea in archivo.readlines():
         #print(linea,contador_lineas)
-        txt=restaurante(linea,contador_lineas)
+        restaurante(linea,contador_lineas)
         contador_lineas+=1
-    print(txt)
+
 
 def restaurante(linea_texto,contador_lineas):
     texto={}
@@ -33,6 +33,7 @@ def array_test():
     array_catalogo1.append('88.88')
     array_catalogo1.append('ULU LULUL')
     array_catalogo1.append(' ')
+    array_catalogo1.append('TOKENS')
     #print(array_catalogo1)
     return array_catalogo1    
     
@@ -52,6 +53,7 @@ def retornoDos():
     array_alimento_bebidas.append('POSTRE CABRON')
     array_alimento_bebidas.append(array)
     array_alimento_bebidas.append(' ')
+    array_alimento_bebidas.append('TOKENS')
     #print(array_alimento_bebidas)
     return array_alimento_bebidas    
 
@@ -71,6 +73,7 @@ def retornoCuatro():
     array_menu_restaurante.append('RESTAURANTE JEEJ')
     array_menu_restaurante.append(array)
     array_menu_restaurante.append(' ')
+    array_menu_restaurante.append('TOKENS')
     return array_menu_restaurante
 
 def imprimir():
