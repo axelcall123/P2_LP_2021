@@ -4,7 +4,7 @@ def identificadores(identificador):
     unir=''
     for n in range(len(identificador)):
         if state==0:#a-z
-            if (ord(identificador[n].lower())>96 and ord(identificador[n].lower())<123) and n==0:#a-
+            if (ord(identificador[n].lower())>96 and ord(identificador[n].lower())<123) and n==0:#a-z
                 unir=unir+identificador[n]
                 state=1
             else:

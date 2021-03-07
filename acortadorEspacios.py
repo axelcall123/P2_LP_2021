@@ -21,26 +21,31 @@ def acortador(texto):# QUITAR ESPACIOS IZQUIERDA Y DERECHA
         unir=unir+texto[n]
     return unir
 
-def OpMenu(texto):
+def principal(texto):
     unir=''
     a=''
     b=''
     c=''
     d=''
-    if texto[0]=='[':#VERIFICACION DE []
-        if texto[len(texto)-1]==']':
-            for n in range(1,len(texto)-1):#QUITA LOS []
-                unir=unir+texto[n]
-            texto=unir
-            texto=texto+';;;;'
-            unir=''
-            array_OpMenu=texto.split(';')#SEPARA POR ;
-            a=acortador(array_OpMenu[0])
-            b=acortador(array_OpMenu[1])
-            c=acortador(array_OpMenu[2])
-            d=acortador(array_OpMenu[3])
-            array_salida=[a,b,c,d]
-            print(array_salida)  
-#1;2;3;4
-OpMenu('[d1;‘Desayuno 1’;45.00;’Descripción Desayuno 1’]')
+    #SIRVEN PARA TOMAR O NO TOMAR EN CUENTA LOS [...........]
+    num1=1
+    num2=1
+    if texto[0]!='[':#VERIFICACION DE []
+        num1=0
+        if texto[len(texto)-1]!=']':
+            num1=0
+            
+    for n in range(num1,len(texto)-num2):#QUITA LOS []
+        unir=unir+texto[n]
+    texto=unir
+    texto=texto+';;;;'#POR SI NO VIENE PONER LOS 4
+    unir=''
+    array_OpMenu=texto.split(';')#SEPARA POR ;
+    a=acortador(array_OpMenu[0])
+    b=acortador(array_OpMenu[1])
+    c=acortador(array_OpMenu[2])
+    d=acortador(array_OpMenu[3])
+    txt=a+';'+b+';'+c+';'+d
+    return txt
+
 
