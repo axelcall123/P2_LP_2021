@@ -5,7 +5,7 @@
 #columna+=1
 #txt[n]==' '
 #LEXEMA,FILA,COLUMNA||TOKEN#9.5,10,10,numero
-
+#SU MASCARA
 #FILA,COLUNA,CARACTER,DESCRIPCION||1,1,%,algo
 #Errores.append([fila,columna,txt[n],""])
 #ALFA INCIO CADENA
