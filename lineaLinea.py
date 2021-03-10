@@ -19,7 +19,6 @@ def afd(txt):
     fila=1#/n
     columna=-1#PARA CONTAR BIEN LAS COLUMNAS# 1==/n
     state=0
-    inicio=True
     unir=''
     Tokens=[]
     Errores=[]
@@ -28,35 +27,52 @@ def afd(txt):
             fila+=1
             columna=-1#PARA CONTAR BIEN LAS COLUMNAS
         if txt[n]!='\n':
-            columna+=1 
-        if txt[n]=='Ω':#FIXME: sirve para terminar la cadena borrarlo
-            for a in Tokens:
-                print(a,'T')
-            for a in Errores:
-                print(a,'E')
-            return
-        #print(state,'||',txt[n],n,':::')
+            columna+=1
+        if n+1< len(txt):
+            if txt[n]=='Ω' and txt[n+1]=='Ω':#FIXME: sirve para terminar la cadena borrarlo
+                for a in Tokens:
+                    print(a,'T')
+                for a in Errores:
+                    print(a,'E')
+                return
+        print(state,'||',txt[n],n,':::')
         if state==0:#a-z
             if ord(txt[n].lower())>96 and ord(txt[n].lower())<123:#a-z
                 unir=unir+txt[n]
                 state=0             
             elif txt[n]=='=':
-                Tokens.append([unir,fila,columna,'T_Restaurante'])#RESTAURANTE               
+                if unir.lower()=='restaurante':
+                    Tokens.append([unir,fila,columna,'T_Restaurante'])#RESTAURANTE               
+                else:
+                    Errores.append([fila,columna,txt[n],"SE ESPERABA: restaurante"]) 
                 unir=''
                 state=1
-            else:#ERRORES 1RA LINEA
-                print('ERROR',txt[n])
-                return
+            else:
+                if txt[n]=="'":
+                    Errores.append([fila,columna,txt[n],"SE ESPERABA: ="])
+                    Tokens.append([' ',fila,columna,'T_Restaurante'])
+                    unir='' 
+                    state=2
         elif state==1:#=
             if txt[n]=="'":
                 state=2
             else:
-                print('ERROR',txt[n])
-                return
+                Errores.append([fila,columna,txt[n],"SE ESPERABA:'"])
+                state=-1
+        elif state==-1:#Restaurante LFP'
+            if txt[n]=="'":
+                state=4
+                Tokens.append([' ',fila,columna,'T_Res'])
+            else:  
+                state=-1
         elif state==2:#'
             if txt[n]!="'":
                 state=3
                 unir=unir+txt[n]
+            elif txt[n]=="'":#ADMITE VACIA
+                unir=''
+                Tokens.append([unir,fila,columna,'T_Res'])
+                state=4
         elif state==3:# cualquier !'
             if txt[n]!="'":
                 state=3
@@ -65,9 +81,9 @@ def afd(txt):
                 state=4
                 Tokens.append([unir,fila,columna,'T_Res'])#NOMBRE DEL RESTAURANTE
                 unir=''
-            else:#DIFIL VER ALGUN ERROR CON ESTO
-                print('ERROR',txt[n])
-                return
+            #else:#DIFIL VER ALGUN ERROR CON ESTO
+                #print('ERROR',txt[n])
+                #return
         #TODO:COMIENZA SECCION 
         elif state==4:#'
             if txt[n]=='\n' or txt[n]==' ':
@@ -75,8 +91,14 @@ def afd(txt):
             elif txt[n]=="'":
                 state=5
             else:
-                print('ERROR',txt[n])
-                return
+                Errores.append([fila,columna,txt[n],"SE ESPERABA: '"])
+                state=-4
+                #print('ERROR4',txt[n])
+        elif state==-4:#ERROR 'Restaurante LFP
+            if txt[n]=="'":
+                state=6
+            else:
+                state=-4
         elif state==5:#' '|/n
             if txt[n]!="'":
                 unir=unir+txt[n]
@@ -95,8 +117,13 @@ def afd(txt):
             elif txt[n]==':':
                 state=8
             else:
-                print('ERROR',txt[n])
-                return
+                Errores.append([fila,columna,txt[n],"SE ESPERABA: ,:"])
+                state=-6
+        elif state==-6:#ERROR 'Bebidas1' 2:
+            if txt[n]=='[':
+                state=10
+            else:
+                state=-6
         # elif state==7:#' '
         #     if txt[n]==' ':
         #         state=7
@@ -108,13 +135,18 @@ def afd(txt):
             elif txt[n]=='[':
                 state=10
             else:
-                print('ERROR',txt[n])
-                return
+                Errores.append([fila,columna,txt[n],"SE ESPERABA: ,salto,["])
+                state=-8
         # elif state==9:#' '|\n
         #     if txt[n]==' ' or txt[n]=='\n':
         #         state=9
         #     elif txt[n]=='[':
         #         state=10
+        elif state==-8:#ERRRO :2
+            if txt[n]=="[":
+                state=10
+            else:
+                state=-8
         elif state==10:#[
             if txt[n]==' ':
                 state=11
@@ -122,7 +154,7 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=12
             else:
-                print('ERROR',txt[n])
+                print('ERROR10',txt[n])
                 return
         elif state==11:#' '
             if txt[n]==' ':
@@ -149,12 +181,21 @@ def afd(txt):
             if ord(txt[n])>47 and ord(txt[n])<58:#0-9
                 unir=unir+txt[n]
                 state=13
+            elif txt[n]==' ':
+                Tokens.append([unir,fila,columna,'T_ID'])#IDENTIFICADOR
+                unir=''
+                state=-14
             elif txt[n]==';':#;
                 Tokens.append([unir,fila,columna,'T_ID'])#IDENTIFICADOR
                 unir=''
                 state=15
             else:
                 print('ERROR')
+        elif state==-14:
+            if txt[n]==' ':
+                state=-14
+            elif txt[n]==';':
+                state=15
         elif state==14:#_
             if txt[n]=='_':#_
                 unir=unir+txt[n]
