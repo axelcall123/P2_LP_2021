@@ -24,71 +24,34 @@ def numero():#COMO SE MUESTRAN LOS NUMEROS
     dos=40
     tres=40.000
     print(uno,dos,tres)
-
-def array_test():
-    array_catalogo1=[]
-    #[ID,NOMBRE,PRECIO,DESCRIPCION]
-    array_catalogo1.append('POS_1')
-    array_catalogo1.append('POSTRE LOL')
-    array_catalogo1.append('88.88')
-    array_catalogo1.append('ULU LULUL')
-    array_catalogo1.append(' ')
-    array_catalogo1.append('TOKENS')
-    #print(array_catalogo1)
-    return array_catalogo1    
     
-def retornoUno():
-    arrayA_catalogo=[]
-    array=array_test()
-    #[[B1][B2][B3]] B ALIMENTO#N
-    arrayA_catalogo.append(array)
-    arrayA_catalogo.append(array)
-    #print(arrayA_catalogo)
-    return arrayA_catalogo
+#imprimir()
+def wuamos():
+    fila=0
+    columna=0
+    T=[
+        ['BLABLA',fila,columna,'T_RES'],
 
-def retornoDos():
-    array_alimento_bebidas=[]
-    array=retornoUno()
-    #[ALIMENTO,arrayA_catalogo,ERROR]
-    array_alimento_bebidas.append('POSTRE CABRON')
-    array_alimento_bebidas.append(array)
-    array_alimento_bebidas.append(' ')
-    array_alimento_bebidas.append('TOKENS')
-    #print(array_alimento_bebidas)
-    return array_alimento_bebidas    
+        ['UNO',fila,columna,'T_SEC'],
+        ['a',fila,columna,'T_ID'],['b',fila,columna,'T_NOM'],['c',fila,columna,'T_PRE'],['d',fila,columna,'T_DES'],
+        ['e',fila,columna,'T_ID'],['f',fila,columna,'T_NOM'],['g',fila,columna,'T_PRE'],['h',fila,columna,'T_DES'],
 
-def retornoTres():
-    arrayA_alimento_bebidas=[]
-    array=retornoDos()
-    #[[ALIMENTOS][ALIMENTOS]
-    arrayA_alimento_bebidas.append(array)
-    arrayA_alimento_bebidas.append(array)
-    #print(arrayA_alimento_bebidas)
-    return arrayA_alimento_bebidas
+        ['DOS',fila,columna,'T_SEC'],
+        ['A',fila,columna,'T_ID'],['B',fila,columna,'T_NOM'],['C',fila,columna,'T_PRE'],['D',fila,columna,'T_DES'],
+        ['E',fila,columna,'T_ID'],['F',fila,columna,'T_NOM'],['G',fila,columna,'T_PRE'],['H',fila,columna,'T_DES'],
 
-def retornoCuatro():
-    array_menu_restaurante=[]
-    array=retornoTres()
-    # [NOMBRE RESTAURANTE,array_alimento_bebidas]
-    array_menu_restaurante.append('RESTAURANTE JEEJ')
-    array_menu_restaurante.append(array)
-    array_menu_restaurante.append(' ')
-    array_menu_restaurante.append('TOKENS')
-    return array_menu_restaurante
-
-def imprimir():
-    FF=retornoCuatro()
-    #print(A)
-    if FF[2]==' ':
-        print('nombre del restaurante:',FF[0])
-        for BB in FF[1]:
-            if BB[2]==' ':
-                print(' nombre del alimento:',BB[0])
-                for CC in BB[1]:
-                    if CC[4]==' ':
-                        print('     ID:',CC[0],'||NOMBRE:',CC[1],'||PRECIO:',CC[2],'||DESCRIPCION:',CC[3])
-        
-imprimir()
-
-
-
+        ['TRES',fila,columna,'T_SEC'],
+        ['1',fila,columna,'T_ID'],['2',fila,columna,'T_NOM'],['3',fila,columna,'T_PRE'],['4',fila,columna,'T_DES']
+        ]
+    cont=0
+    for a in range(len(T)):
+        if T[a][3]=='T_SEC':
+            print(T[a][0],':')
+        elif T[a][3]=='T_ID' or T[a][3]=='T_NOM' or T[a][3]=='T_PRE' or T[a][3]=='T_DES':
+            cont+=1  
+            if cont%4==0:
+                print(T[a-3][0],T[a-2][0],T[a-1][0],T[a][0],'||')
+                cont=0
+                
+        #print(T[a][3],'***')
+#wuamos()

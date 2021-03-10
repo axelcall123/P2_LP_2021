@@ -1,7 +1,7 @@
 import lineaLinea as lineaLinea
 from tkinter import filedialog
 from tkinter import *
-def leer():
+def leer(TF):
     root = Tk()#
     root =  filedialog.askopenfilename(initialdir = "/AXEL/DOCUMENTOS/U/GITHUB/P2_LP_2021",title = "Select file",filetypes = (("lfp files","*.lfp"),("all files","*.*")))
     archivo=open(root, 'r', encoding="utf-8")
@@ -10,6 +10,9 @@ def leer():
     for linea in archivo.readlines():#LEE LINEA POR LINEA
         unir=unir+linea
         contador+=1
-    lineaLinea.afd(unir)
+    if TF==True:#CARGAR MENU|ORDEN
+        lineaLinea.afd(unir)#MENU
+    else:
+        print()
         
-leer()
+leer(True)
