@@ -1,0 +1,36 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-decoration: none;
+	text-align: center;
+}
+
+body {
+	background: #f0a277;
+}
+
+.divs {
+	border: solid black 1px;
+}
+
+.container {
+	margin-bottom: 25px;
+}
+
+hr {
+	background-color: rgb(4, 92, 26);
+}
+
+.col-md-12 {
+	font-size: 25px;
+	font-weight: bold;
+	color: white;
+	background-color: black;
+	border-radius: 5px;
+}
+
+.col-md-3 {
+	border: solid 1px black;
+	border-radius: 10px;
+}

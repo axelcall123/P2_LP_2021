@@ -55,3 +55,28 @@ def wuamos():
                 
         #print(T[a][3],'***')
 #wuamos()
+
+def tilde(letra):
+    if letra=='á':
+        return 'a'
+    elif letra=='é':
+        return 'e'
+    elif letra=='í':
+        return 'i'
+    elif letra=='ó':
+        return 'o'
+    elif letra=='ú':
+        return 'u'  
+    elif letra=='ñ':
+        return 'n'
+    else:
+        return letra
+    
+def textos(txt):#Á->á->a
+    unir=''
+    for a in txt:
+        #print(a,a.lower(),ord(a.lower()),tilde(a.lower()),ord(tilde(a.lower())))
+        if ord(tilde(a.lower()))>96 and ord(tilde(a.lower()))<123 or a==' ':#a-z
+            unir=unir+a
+    print(unir)
+textos('Hola Como Le Va Mé')
