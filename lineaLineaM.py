@@ -1,3 +1,4 @@
+import Html as Html
 #print(txt)
 #ord(txt[n])>47 and ord(txt[n])<58:#0-9
 #ord(txt[n].lower())>96 and ord(txt[n].lower())<123:#a-z
@@ -10,13 +11,13 @@
 #Errores.append([fila,columna,txt[n],""])
 #ALFA INCIO CADENA
 #OMEGA FIN DEL CICLO
-import html as html
 array_catalogo=[]
 arrayA_catalogo=[]
 array_alimento_bebidas=[]
 arrayA_alimento_bebidas=[]
 array_menu_restaurante=[]
 def afd(txt):
+    array_salida=[]
     fila=1#/n
     columna=-1#PARA CONTAR BIEN LAS COLUMNAS# 1==/n
     state=0
@@ -321,11 +322,11 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=24
             elif txt[n]==' ':
-                Tokens.append([unir,fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
                 unir=''
                 state=25
             elif txt[n]==';':
-                Tokens.append([unir,fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
                 unir=''
                 state=26
             else:
@@ -338,11 +339,11 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=27
             elif txt[n]==' ':
-                Tokens.append([unir,fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
                 unir=''
                 state=25
             elif txt[n]==';':
-                Tokens.append([unir,fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
                 unir=''
                 state=26
             else:
@@ -376,11 +377,11 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=27
             elif txt[n]==' ':
-                Tokens.append([unir,fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
                 unir=''
                 state=25
             elif txt[n]==';':
-                Tokens.append([unir,fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
                 unir=''
                 state=26
             else:
@@ -433,9 +434,11 @@ def afd(txt):
                 state=10
             elif txt[n]=="'":
                 state=5
-
-        html.htmlTokens(Tokens)
-    #return [Tokens,Errores]
+    #html.ppp(Tokens)
+    Html.tokenHtml(Tokens)
+    array_salida.append(Tokens)
+    array_salida.append(Errores)
+    return array_salida
     ##CE ACABO EMPIEZA LA RECURSIVIDAD DE 'abc':|[]
     
 

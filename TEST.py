@@ -79,4 +79,95 @@ def textos(txt):#Á->á->a
         if ord(tilde(a.lower()))>96 and ord(tilde(a.lower()))<123 or a==' ':#a-z
             unir=unir+a
     print(unir)
-textos('Hola Como Le Va Mé')
+
+def numeros():
+    a='1'
+    b='1.'
+    c='1.0'
+    print(str(float(a))+'0',str(float(b)),str(float(c)))
+
+def afd(txt):
+    array_salida=[]
+    fila=1#/n
+    columna=-1#PARA CONTAR BIEN LAS COLUMNAS# 1==/n
+    state=0
+    unir=''
+    Tokens=[]
+    Errores=[]
+    for n in range(len(txt)):   
+        if txt[n]=='\n':
+            fila+=1
+            columna=-1#PARA CONTAR BIEN LAS COLUMNAS
+        if txt[n]!='\n':
+            columna+=1
+        print(state,'||',txt[n],n,':::')
+        if state==0:
+            if txt[n]=="'":
+                state=1
+        if state==1:
+            if txt[n]!="'":
+                unir=unir+txt[n]
+                state=2
+        elif state==2:
+            if txt[n]!="'":
+                unir=unir+txt[n]
+                state=2
+            elif txt[n]=="'":
+                Tokens.append([unir,fila,columna,'T_CADENA','Nombre'])
+                unir=''
+                state=3          
+        elif state==3:
+            if txt[n]==' ':
+                state=3
+            if txt[n]==",":
+                state=4
+
+        elif state==4:
+            if txt[n]==' ':
+                state=4
+            elif txt[n]=="'":
+                state=5
+        elif state==5:
+            if txt[n]!="'":
+                unir=unir+txt[n]
+                state=6
+        elif state==6:
+            if txt[n]!="'":
+                unir=unir+txt[n]
+                state=6
+            elif txt[n]=="'":
+                Tokens.append([unir,fila,columna,'T_CADENA','NIT'])
+                unir=''
+                state=7
+        elif state==7:
+            if txt[n]==' ':
+                state=7
+            elif txt[n]==",":
+                state=8
+        elif state==8:
+            if txt[n]==' ':
+                state=8
+            elif txt[n]=="'":
+                state=9
+        elif state==9:
+            if txt[n]!="'":
+                unir=unir+txt[n]
+                state=10
+        elif state==10:
+            if txt[n]!="'":
+                unir=unir+txt[n]
+                state=10
+            elif txt[n]=="'":
+                Tokens.append([unir,fila,columna,'T_CADENA','FECHA'])
+                unir=''
+                state=11
+        elif state==11:
+            if txt[n]==' ':
+                state=11
+            elif txt[n]==',':
+                state=12
+        elif state==12:
+            if txt[n]==' ':
+                state=12
+            elif ord(txt[n])>47 and ord(txt[n])<58:#0-9
+                state=13

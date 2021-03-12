@@ -1,8 +1,9 @@
-import lineaLinea as lineaLinea
+import lineaLineaM as lineaLineaM
+import lineaLineaO as lineaLineaO
 from tkinter import filedialog
 from tkinter import *
-def leer(TF):
-    
+def read(TF):
+    array_salida=[]
     root = Tk()#
     root =  filedialog.askopenfilename(initialdir = "/AXEL/DOCUMENTOS/U/GITHUB/P2_LP_2021",title = "Select file",filetypes = (("lfp files","*.lfp"),("all files","*.*")))
     archivo=open(root, 'r', encoding="utf-8")
@@ -12,8 +13,8 @@ def leer(TF):
         unir=unir+linea
         contador+=1
     if TF==True:#CARGAR MENU|ORDEN
-        lineaLinea.afd(unir)#MENU
+        array_salida=lineaLineaM.afd(unir)#MENU
     else:
-        print()
-        
-leer(True)
+        array_salida=lineaLineaO.afd(unir)#MENU
+    return array_salida 
+    

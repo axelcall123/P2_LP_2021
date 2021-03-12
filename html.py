@@ -1,18 +1,27 @@
 import webbrowser#pag
-def htmlTokensDes(array):
+def tokenHtml(array):
     texto=''
-        
+    IR= '<tr>'
+    FR='</tr>'
+    FD='</td>'
+    ID='<td>'
+    ih='<th scope="row">'
+    fh='</th>'
+    cont=1
+    for a in array:
+      if a[0]!=' ' or a[0]!='':
+        texto=texto+IR  +ih+str(cont)+fh   +ID+str(a[0])+FD   +ID+str(a[1])+FD  +ID+str(a[2])+FD  +ID+a[3]+FD+   FR
+        cont+=1
+    Tokens(texto)
 
-
-def htmlTokens(txt):
-    f = open('HTML/Tokens.html','w')
+def Tokens(txt):
+    f = open('Tokens.html','w')
     principal = """
     <!DOCTYPE html>
-        <html lang="en">
+        <html lang="es">
         <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        
         <link rel="stylesheet" href="css/css.css">
         <link rel="stylesheet" href="boos/bootstrap.css">
         <title>Document</title>
@@ -20,7 +29,7 @@ def htmlTokens(txt):
         <body>
             <table class="table">
                 <thead class="thead-dark">
-                    <tr>
+                    <tr class="menu">
                         <th scope="col">No.</th>
                         <th scope="col">Lexema</th>
                         <th scope="col">Fila</th>
@@ -41,7 +50,7 @@ def htmlTokens(txt):
     f.write(cuerpos)#medio
     f.write(fin)#final
     f.close()#cerar
-    webbrowser.open_new_tab('HTML/Tokens.html')
+    webbrowser.open_new_tab('Tokens.html')
 
 '''
 <table class="table">
@@ -60,6 +69,7 @@ def htmlTokens(txt):
     <tr>
       <th scope="row">1</th>
       <td>9.50</td>
+      <td>10</td>
       <td>10</td>
       <td>numero</td>
     </tr>
