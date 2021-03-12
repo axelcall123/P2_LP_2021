@@ -107,7 +107,7 @@ def afd(txt):
                 state=5
             elif txt[n]=="'":
                 state=6
-                Tokens.append([unir,fila,columna,'T_CADENA','SEC'])#NOMBRE DE SECCION
+                Tokens.append([unir,fila,columna,'T_CADENA','SECCION'])#NOMBRE DE SECCION
                 unir=''
             else:
                 #D
@@ -300,7 +300,7 @@ def afd(txt):
                 state=23
             else:
                 unir=''
-                Tokens.append([' ',fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([' ',fila,columna,'T_NUM','NUMERO'])#PRECIO
                 Errores.append([fila,columna,txt[n],"SE ESPERABA: 0-9| |"])
                 state=-21
         # elif state==22:#0-9
@@ -322,16 +322,16 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=24
             elif txt[n]==' ':
-                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUMERO'])#PRECIO
                 unir=''
                 state=25
             elif txt[n]==';':
-                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUMERO'])#PRECIO
                 unir=''
                 state=26
             else:
                 unir=''
-                Tokens.append([' ',fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([' ',fila,columna,'T_NUM','NUMERO'])#PRECIO
                 Errores.append([fila,columna,txt[n],"SE ESPERABA: 0-9| |"])
                 state=-21
         elif state==24:#' '|;
@@ -339,16 +339,16 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=27
             elif txt[n]==' ':
-                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUMERO'])#PRECIO
                 unir=''
                 state=25
             elif txt[n]==';':
-                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUMERO'])#PRECIO
                 unir=''
                 state=26
             else:
                 unir=''
-                Tokens.append([' ',fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([' ',fila,columna,'T_NUM','NUMERO'])#PRECIO
                 Errores.append([fila,columna,txt[n],"SE ESPERABA: 0-9| |"])
                 state=-21
         elif state==25:#;
@@ -377,16 +377,16 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=27
             elif txt[n]==' ':
-                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUMERO'])#PRECIO
                 unir=''
                 state=25
             elif txt[n]==';':
-                Tokens.append([float(unir),fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([float(unir),fila,columna,'T_NUM','NUMERO'])#PRECIO
                 unir=''
                 state=26
             else:
                 unir=''
-                Tokens.append([' ',fila,columna,'T_NUM','NUM'])#PRECIO
+                Tokens.append([' ',fila,columna,'T_NUM','NUMERO'])#PRECIO
                 Errores.append([fila,columna,txt[n],"SE ESPERABA: 0-9| |"])
                 state=-21
         # elif state==28:#'
@@ -399,7 +399,7 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=29
             elif txt[n]=="'":
-                Tokens.append([unir,fila,columna,'T_CADENA','DES'])#DESCRIPCION
+                Tokens.append([unir,fila,columna,'T_CADENA','DESCRIPCION'])#DESCRIPCION
                 unir=''
                 state=30
         elif state==30:#]

@@ -33,7 +33,7 @@ while True:
 	elif opcionMenu == '6':
 		break
 	elif opcionMenu=='9':
-		print(cargarMenu)
+		print(cargarMenu,'||',cargarOrden)
 	elif opcionMenu=='7':
 		print()
 	else:

@@ -113,7 +113,7 @@ def afd(txt):
                 unir=unir+txt[n]
                 state=2
             elif txt[n]=="'":
-                Tokens.append([unir,fila,columna,'T_CADENA','Nombre'])
+                Tokens.append([unir,fila,columna,'T_CADENA','NOMBRE'])
                 unir=''
                 state=3          
         elif state==3:

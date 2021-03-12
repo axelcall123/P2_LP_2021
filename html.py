@@ -10,7 +10,10 @@ def tokenHtml(array):
     cont=1
     for a in array:
       if a[0]!=' ' or a[0]!='':
-        texto=texto+IR  +ih+str(cont)+fh   +ID+str(a[0])+FD   +ID+str(a[1])+FD  +ID+str(a[2])+FD  +ID+a[3]+FD+   FR
+        if a[4]=='PORCENTAJE':
+          texto=texto+IR  +ih+str(cont)+fh   +ID+str(float(a[0])*100)+'%'+FD   +ID+str(a[1])+FD  +ID+str(a[2])+FD  +ID+a[3]+';'+a[4]+FD+   FR
+        else:
+          texto=texto+IR  +ih+str(cont)+fh   +ID+str(a[0])+FD   +ID+str(a[1])+FD  +ID+str(a[2])+FD  +ID+a[3]+';'+a[4]+FD+   FR
         cont+=1
     Tokens(texto)
 
