@@ -1,5 +1,6 @@
 from tkinter import filedialog
 from tkinter import *
+import graphviz
 def leer():
     root = Tk()
     root =  filedialog.askopenfilename(initialdir = "/AXEL/DOCUMENTOS/U/GITHUB/P2_LP_2021",title = "Select file",filetypes = (("lfp files","*.lfp"),("all files","*.*")))
@@ -9,8 +10,6 @@ def leer():
         #print(linea,contador_lineas)
         restaurante(linea,contador_lineas)
         contador_lineas+=1
-
-
 def restaurante(linea_texto,contador_lineas):
     texto={}
     texto[contador_lineas]=linea_texto
@@ -18,13 +17,11 @@ def restaurante(linea_texto,contador_lineas):
         print(linea_texto,'UNO')
     else:
         print(texto[contador_lineas])
-
 def numero():#COMO SE MUESTRAN LOS NUMEROS
     uno=40.
     dos=40
     tres=40.000
     print(uno,dos,tres)
-    
 #imprimir()
 def wuamos():
     fila=0
@@ -46,16 +43,18 @@ def wuamos():
     cont=0
     for a in range(len(T)):
         if T[a][3]=='T_SEC':
+            #div 12
             print(T[a][0],':')
         elif T[a][3]=='T_ID' or T[a][3]=='T_NOM' or T[a][3]=='T_PRE' or T[a][3]=='T_DES':
             cont+=1  
             if cont%4==0:
+                #div varios
                 print(T[a-3][0],T[a-2][0],T[a-1][0],T[a][0],'||')
+                #hr
                 cont=0
                 
         #print(T[a][3],'***')
 #wuamos()
-
 def tilde(letra):
     if letra=='á':
         return 'a'
@@ -70,8 +69,7 @@ def tilde(letra):
     elif letra=='ñ':
         return 'n'
     else:
-        return letra
-    
+        return letra 
 def textos(txt):#Á->á->a
     unir=''
     for a in txt:
@@ -86,88 +84,14 @@ def numeros():
     c='1.0'
     print(str(float(a))+'0',str(float(b)),str(float(c)))
 
-def afd(txt):
-    array_salida=[]
-    fila=1#/n
-    columna=-1#PARA CONTAR BIEN LAS COLUMNAS# 1==/n
-    state=0
-    unir=''
-    Tokens=[]
-    Errores=[]
-    for n in range(len(txt)):   
-        if txt[n]=='\n':
-            fila+=1
-            columna=-1#PARA CONTAR BIEN LAS COLUMNAS
-        if txt[n]!='\n':
-            columna+=1
-        print(state,'||',txt[n],n,':::')
-        if state==0:
-            if txt[n]=="'":
-                state=1
-        if state==1:
-            if txt[n]!="'":
-                unir=unir+txt[n]
-                state=2
-        elif state==2:
-            if txt[n]!="'":
-                unir=unir+txt[n]
-                state=2
-            elif txt[n]=="'":
-                Tokens.append([unir,fila,columna,'T_CADENA','NOMBRE'])
-                unir=''
-                state=3          
-        elif state==3:
-            if txt[n]==' ':
-                state=3
-            if txt[n]==",":
-                state=4
+def grap():
+    dot = graphviz.Digraph(comment='The Round Table')
+    dot
+    dot.node('A', 'King Arthur')
+    dot.node('B', 'Sir Bedevere the Wise')
+    dot.node('L', 'Sir Lancelot the Brave')
+    dot.edges(['AB', 'AL'])
+    dot.edge('B', 'L', constraint='false')
+    dot.render('Hola.gv', view=True)
 
-        elif state==4:
-            if txt[n]==' ':
-                state=4
-            elif txt[n]=="'":
-                state=5
-        elif state==5:
-            if txt[n]!="'":
-                unir=unir+txt[n]
-                state=6
-        elif state==6:
-            if txt[n]!="'":
-                unir=unir+txt[n]
-                state=6
-            elif txt[n]=="'":
-                Tokens.append([unir,fila,columna,'T_CADENA','NIT'])
-                unir=''
-                state=7
-        elif state==7:
-            if txt[n]==' ':
-                state=7
-            elif txt[n]==",":
-                state=8
-        elif state==8:
-            if txt[n]==' ':
-                state=8
-            elif txt[n]=="'":
-                state=9
-        elif state==9:
-            if txt[n]!="'":
-                unir=unir+txt[n]
-                state=10
-        elif state==10:
-            if txt[n]!="'":
-                unir=unir+txt[n]
-                state=10
-            elif txt[n]=="'":
-                Tokens.append([unir,fila,columna,'T_CADENA','FECHA'])
-                unir=''
-                state=11
-        elif state==11:
-            if txt[n]==' ':
-                state=11
-            elif txt[n]==',':
-                state=12
-        elif state==12:
-            if txt[n]==' ':
-                state=12
-            elif ord(txt[n])>47 and ord(txt[n])<58:#0-9
-                state=13
+grap()

@@ -14,10 +14,10 @@ def afd(txt):
     for n in range(len(txt)):   
         if txt[n]=='\n':
             fila+=1
-            columna=-1#PARA CONTAR BIEN LAS COLUMNAS
+            columna=0#PARA CONTAR BIEN LAS COLUMNAS
         if txt[n]!='\n':
             columna+=1
-        print(state,'||',txt[n],n,fila,columna,len(txt))
+        #print(state,'||',txt[n],n,fila,columna,len(txt))
         if state==0:
             if txt[n]=="'":
                 state=1

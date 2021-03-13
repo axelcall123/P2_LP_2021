@@ -5,12 +5,9 @@
 	text-decoration: none;
 	text-align: center;
 }
-
-body {
-	background: #f0a277;
+hr {
+	background-color: rgb(4, 92, 26);
 }
-.cuadros{
-	border-style: 1px solid black;
+div.cuadros{
+	border: 0.5px solid black;
 }
-
-
