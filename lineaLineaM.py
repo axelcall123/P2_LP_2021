@@ -435,10 +435,16 @@ def afd(txt):
             elif txt[n]=="'":
                 state=5
     #html.ppp(Tokens)
-    Html.tokenHtml(Tokens)
-    array_salida.append(Tokens)
-    array_salida.append(Errores)
-    return array_salida
+    if Errores:#VACIA 
+        Html.tokenHtml(Errores,False)
+        #print('Erore Lleno')
+        return array_salida
+    else:#NO VACIA TOKENS
+        Html.tokenHtml(Tokens,True)
+        return Tokens
+        #print('Erore Vacia')
+    #array_salida.append(Tokens)
+    #array_salida.append(Errores)
     ##CE ACABO EMPIEZA LA RECURSIVIDAD DE 'abc':|[]
     
 

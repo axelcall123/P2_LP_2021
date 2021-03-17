@@ -1,0 +1,4 @@
+ANACONDA .EXE
+python 3.9
+pip install graphviz
+graphviz 2.38(https://graphviz.readthedocs.io/en/stable/manual.html#installation)

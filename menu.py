@@ -1,5 +1,6 @@
 from colorama import init, Fore, Back, Style
 import leer as leer
+import Html as Html
 cargarMenu = []
 cargarOrden=[]
 
@@ -25,9 +26,23 @@ while True:
 	elif opcionMenu == '2':
 		cargarOrden = leer.read(False)
 	elif opcionMenu == '3':
-		print()
+		if cargarMenu:#LLENO cargar
+			opcionLimite= input('desea poner un límite en los precios de las distintas opciones que tiene el menú >>,SI|NO\n')
+			if opcionLimite=="SI":
+				numLimite=input('producto menores al precio>>')
+				Html.menuHtml(cargarMenu,float(numLimite))
+			elif opcionLimite=="NO":
+				Html.menuHtml(cargarMenu,999999)
+		else: 
+			print('No ha selecciona a un el menu, o hubo error en archivo.lfp. Seleccione un archivo correcto Gracias :3')
 	elif opcionMenu == '4':
-		print()
+		if cargarOrden and cargarMenu:
+			if float(cargarOrden[3][0])>=0 and float(cargarOrden[3][0])<=1:
+				Html.facturaHtml(cargarMenu,cargarOrden)
+			else:
+				print('La propina excede el limite')
+		else:
+			print('No ha selecciona una orden o un menu, o hubo error en archivo.lfp. Seleccione un archivo correcto Gracias :3')
 	elif opcionMenu == '5':
 		print()
 	elif opcionMenu == '6':

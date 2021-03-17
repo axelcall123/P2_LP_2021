@@ -1,0 +1,16 @@
+Ranchers:TITULO
+font-family: 'Ranchers', cursive;
+font-family: 'Anton', sans-serif;
+
+Raleway:Texto
+font-family: 'Raleway', sans-serif;
+
+
+Bebas Neue:Sub-titulo
+font-family: 'Bebas Neue', cursive;
+
+
+Cinzel: Precio
+font-family: 'Cinzel', serif;
+
+

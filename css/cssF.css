@@ -1,0 +1,32 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-decoration: none;
+	text-align: center;
+}
+
+body.cuerpo {
+	background-color: #83ce70;
+}
+hr {
+	border:15px;
+	background-color: rgb(21, 21, 21);
+}
+.datos{
+	text-align: left;
+}
+.factura{
+	background-color: rgb(255, 255, 255);
+	
+}
+.left{
+	text-align: left;
+}
+.rigth{
+	text-align: right;
+}
+.T{
+	font-size: 15PX;
+	font-weight: bold;
+}

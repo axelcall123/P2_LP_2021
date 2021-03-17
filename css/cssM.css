@@ -1,0 +1,44 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-decoration: none;
+	text-align: center;
+}
+body {
+	background-image: url("https://s1.1zoom.me/big3/497/394307-svetik.jpg");
+	background-color: #990202;
+}
+.catalogo{
+	color:rgba(135, 43, 10, 0.8);
+	background:rgba(0,0,0,0.4);
+}
+hr {
+	border:15px;
+	background-color: rgb(21, 21, 21);
+}
+div.cuadros{
+	border: 0.5px solid black;
+	background: rgb(139, 225, 153);
+	
+}
+.Titulo{
+	color:black;
+	font-family: 'Anton', sans-serif;
+	font-size: 30px;
+}
+.sub-titulo{
+	color:black;
+	font-family: 'Bebas Neue', cursive;
+	font-size:20px;
+}
+.precio{
+	color:black;
+	font-family: 'Cinzel', serif;
+	font-size: 15px
+}
+.texto{
+	color:black;
+	font-family: 'Raleway', sans-serif;
+	font-size: 12px;
+}
