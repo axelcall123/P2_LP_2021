@@ -1,6 +1,8 @@
 from tkinter import filedialog
 from tkinter import *
 import graphviz
+from datetime import date#teimpo
+from datetime import datetime#teimpo
 def leer():
     root = Tk()
     root =  filedialog.askopenfilename(initialdir = "/AXEL/DOCUMENTOS/U/GITHUB/P2_LP_2021",title = "Select file",filetypes = (("lfp files","*.lfp"),("all files","*.*")))
@@ -131,8 +133,7 @@ def grap():
     dot.render('PDF/Hola', view=True)
 
 def xd():
-    T=[]
-    if T!='':
-        print('ABC')
+    fecha=date.today()
+    print(str(fecha))
 
 xd()

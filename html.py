@@ -1,4 +1,6 @@
 import webbrowser#pag
+from datetime import date#teimpo
+from datetime import datetime#teimpo
 def tokenHtml(array,tf):
     texto=''
     IR= '<tr>'
@@ -214,6 +216,66 @@ def facturaHtml(menu,orden):
   propina=total*(float(orden[3][0]))
   #print(listaMenu,listaOrden)
   TotalMasPropina=total+propina
+  numeroF=0
+  fecha=date.today()
+  #print(despacho,total,propina,TotalMasPropina)
+  texto=""
+  div12="""<div class="col-12">"""
+  divf="""</div>"""
+  br="""<br>"""
+  #                   restaurante          factura No.1         12-02-12
+  texto=texto+div12+menu[1][0]+br+"factura No."+str(numeroF)+br+"Fecha: "+str(fecha)+divf
+  div12Datos="""<div class="col-12 datos">"""
+  #                                               nombre:pepe               Nit:123               direccion: ciudad               descripcion   
+  texto=texto+div12Datos+"Datos del cliente"+br+"Nombre: "+orden[0][0]+br+"Nit:"+orden[1][0]+br+"Direccion: "+orden[2][0]+br+br+"Descripcion"+divf
+  incioTablaD="""
+    <div class="col-12">
+      <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">cantidad</th>
+              <th scope="col">Concepto</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+  """
+  inicioTablaG="""
+    <hr>
+    <div class="col-12">
+      <table class="table table-borderless">
+        <tbody>
+  """
+
+  fintTabla="""
+        </tbody>
+      </table>
+    </div>
+  """
+  tri="<tr>"
+  trf="</tr>"
+  tdi="<td>"
+  tdf="</td>"
+  tdL="""<td class="left">"""
+  tdR="""<td class="rigth">"""
+  texto=texto+incioTablaD
+  for a in despacho:
+    #                    cantidad             concepto              precio                total
+    #                   1                       bebida 1              Q10.0                 Q10.0   
+    texto=texto+tri+tdi+str(a[0])+tdf  +tdi+str(a[1])+tdf  +tdi+'Q'+str(a[2])+tdf   +tdi+'Q'+str(a[3])+tdf+trf
+  texto=texto+fintTabla
+  texto=texto+inicioTablaG
+  #                       subtotal     ->        5                         porpina(8%)            ->                                 25
+  texto=texto+tri+tdL+"sub total"+tdf   +tdR+str(total)+tdf+trf    +tri+tdL+"Propina:("+str(float(orden[3][0])*100)+"%)"+tdf   +tdR+"Q"+str(propina)+tdf+trf
+  texto=texto+tri+tdL+"Total"+tdf   +tdR+"Q"+str(TotalMasPropina)+tdf+trf     +fintTabla
+
+
+  factura(texto)
+
+
+  
+
 
 def factura(txt):
   f = open('Factura.html','w')
@@ -227,8 +289,18 @@ def factura(txt):
   <title>Document</title>
   </head>
     <body class="cuerpo">
+      <div class="container">
+            <div class="row">
+                <div class="col-2 f">*</div>
+                <div class="col-8 factura">
+                    <div class="container"><div class="row">
   """
   fin="""
+                  </div></div>      
+                </div>
+                <div class="col-2">*</div>
+            </div>
+        </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   </html>
