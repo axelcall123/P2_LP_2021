@@ -1,0 +1,37 @@
+// SI
+digraph {
+	A [label="RESTAURANTE
+restaurante"]
+	B [label=Bebidas1]
+	C [label="Bebida #1   Q10.0
+Descripción Bebida 1"]
+	D [label="Bebida #2   Q20.0
+Descripción Bebida 2"]
+	E [label="Bebida #3   Q50.25
+Descripción Bebida 3"]
+	F [label=Desayunos]
+	G [label="Desayuno 1   Q30.0
+Descripción Desayuno 1"]
+	H [label="Desayuno 2   Q40.0
+Descripción Desayuno 2"]
+	I [label="Desayuno 3   Q50.0
+Descripción Desayuno 3"]
+	J [label=Pie]
+	K [label="Pie 1   Q70.0
+Descripción pie 1"]
+	L [label=" Postres"]
+	M [label="Postre 1   Q60.0
+Descripción Postre 1"]
+	A -> B
+	B -> C
+	B -> D
+	B -> E
+	A -> F
+	F -> G
+	F -> H
+	F -> I
+	A -> J
+	J -> K
+	A -> L
+	L -> M
+}

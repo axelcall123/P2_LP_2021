@@ -1,9 +1,10 @@
 from colorama import init, Fore, Back, Style
 import leer as leer
 import Html as Html
+import arbol as arbol
 cargarMenu = []
 cargarOrden=[]
-
+numeroF=0#cuenta el numero de la factura echa en html
 def menu():
 	print("\x1b[1;33m"+"Proyectos 1- LFP")
 	print("\033[;36m"+"Lenguajes|B|AXEL CALDERON|201901458")
@@ -38,13 +39,17 @@ while True:
 	elif opcionMenu == '4':
 		if cargarOrden and cargarMenu:
 			if float(cargarOrden[3][0])>=0 and float(cargarOrden[3][0])<=1:
-				Html.facturaHtml(cargarMenu,cargarOrden)
+				numero=Html.facturaHtml(cargarMenu,cargarOrden,numeroF)
+				numeroF=numero#no factura en html
 			else:
 				print('La propina excede el limite')
 		else:
 			print('No ha selecciona una orden o un menu, o hubo error en archivo.lfp. Seleccione un archivo correcto Gracias :3')
 	elif opcionMenu == '5':
-		print()
+		if cargarMenu:#Leeno cargar
+			arbol.arbol(cargarMenu)
+		else:
+			print('No ha selecciona a un el menu, o hubo error en archivo.lfp. Seleccione un archivo correcto Gracias :3')
 	elif opcionMenu == '6':
 		break
 	elif opcionMenu=='9':

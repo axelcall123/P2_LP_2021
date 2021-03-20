@@ -186,40 +186,44 @@ def Menu(txt):
   f.close()#cerar
   webbrowser.open_new_tab('Menu.html')
 #---------------------
-def facturaHtml(menu,orden):
-  contCuatro=0
-  contPar=0
-  listaMenu=[]
-  listaOrden=[]
-  despacho=[]
+def facturaHtml(menu,orden,numeroF):
+  contCuatro=0#contador para id nombre numero descripcion0
+  contPar=0#contador para id cantidad
+  listaMenu=[]#id,nombre,numero
+  listaOrden=[]#id,cantidad
+  despacho=[]#cantidad nombre precio precio*cantidad
+  
+  #SIRVE PARA HACER UNA LISTA DE
   for a in range(len(menu)):#TUPLA[ID,NOMBRE,PRECIO]{-3,-2,-1}
     if menu[a][4]=="ID" or menu[a][4]=="NOMBRE" or menu[a][4]=="NUMERO" or menu[a][4]=="DESCRIPCION":
       contCuatro+=1
-      if contCuatro%4==0:
+      if contCuatro%4==0:#cuenta para ver si es multi 4
+        #                 id            nombre      numero
         listaMenu.append([menu[a-3][0],menu[a-2][0],menu[a-1][0]])
         contCuatro=0
   for a in range(len(orden)):#TUPLA[ID,CANTIDAD]{0,-1}
     if orden[a][0]!='':
       if orden[a][4]=="ID" or orden[a][4]=="CANTIDAD":
         contPar+=1
-        if contPar%2==0:
+        if contPar%2==0:#    id       cantidad  
           listaOrden.append([orden[a][0],orden[a-1][0]])
           contPar=0
   total=0
+#SIRVE PARA HACER OTRA LISTA DE
   for a in listaOrden:#si id(menu)=id(orden)
     for b in listaMenu:
       if a[0].lower()==b[0].lower():
         #CANITDAD|NOMBRE|PRECIO|PRECIO*CANTIDAD
         subtotal=float(b[2])*float(a[1])
-        total=total+subtotal
+        total=total+subtotal#suma precio*cantidad
         despacho.append([a[1],b[1],b[2],subtotal])
   propina=total*(float(orden[3][0]))
   #print(listaMenu,listaOrden)
   TotalMasPropina=total+propina
-  numeroF=0
-  fecha=date.today()
+  
+  fecha=date.today()#fecha de hoy 0-0-0-0
   #print(despacho,total,propina,TotalMasPropina)
-  texto=""
+  texto=""#unir texto
   div12="""<div class="col-12">"""
   divf="""</div>"""
   br="""<br>"""
@@ -270,13 +274,9 @@ def facturaHtml(menu,orden):
   texto=texto+tri+tdL+"sub total"+tdf   +tdR+str(total)+tdf+trf    +tri+tdL+"Propina:("+str(float(orden[3][0])*100)+"%)"+tdf   +tdR+"Q"+str(propina)+tdf+trf
   texto=texto+tri+tdL+"Total"+tdf   +tdR+"Q"+str(TotalMasPropina)+tdf+trf     +fintTabla
 
-
   factura(texto)
-
-
-  
-
-
+  numeroF+=1
+  return numeroF
 def factura(txt):
   f = open('Factura.html','w')
   principal= """
@@ -307,7 +307,7 @@ def factura(txt):
   </html>
   """
   cuerpo=txt
-  f.write(principal)
+  f.write(principal)#inicio
   f.write(cuerpo)#medio
   f.write(fin)#final
   f.close()#cerar
