@@ -29,10 +29,10 @@ while True:
 	elif opcionMenu == '3':
 		if cargarMenu:#LLENO cargar
 			opcionLimite= input('desea poner un límite en los precios de las distintas opciones que tiene el menú >>,SI|NO\n')
-			if opcionLimite=="SI":
+			if opcionLimite.lower()=="si":
 				numLimite=input('producto menores al precio>>')
 				Html.menuHtml(cargarMenu,float(numLimite))
-			elif opcionLimite=="NO":
+			elif opcionLimite.lower()=="no":
 				Html.menuHtml(cargarMenu,999999)
 		else: 
 			print('No ha selecciona a un el menu, o hubo error en archivo.lfp. Seleccione un archivo correcto Gracias :3')

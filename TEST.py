@@ -134,6 +134,8 @@ def grap():
 
 def xd():
     fecha=date.today()
-    print(str(fecha))
+    num="9.5"
+    numDosD=float(num)
+    print(str(fecha)+" "+f"{numDosD:.2f}")
 
 xd()

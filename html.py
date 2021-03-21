@@ -15,7 +15,11 @@ def tokenHtml(array,tf):
       for a in array:
         if a[0]!=' ' or a[0]!='':
           if a[4]=='PORCENTAJE':#CONVETIR DE 0.08 A 8%
-            texto=texto+IR  +ih+str(cont)+fh   +ID+str(float(a[0])*100)+'%'+FD   +ID+str(a[1])+FD  +ID+str(a[2])+FD  +ID+str(a[3])+FD+   FR
+            numDosD=float(a[0])*100
+            texto=texto+IR  +ih+str(cont)+fh   +ID+str(f"{numDosD:.2f}")+'%'+FD   +ID+str(a[1])+FD  +ID+str(a[2])+FD  +ID+str(a[3])+FD+   FR
+          elif a[4]=='NUMERO':#CONVETIR 5.6666 5.66
+            numDosD=float(a[0])
+            texto=texto+IR  +ih+str(cont)+fh   +ID+str(f"{numDosD:.2f}")+FD   +ID+str(a[1])+FD  +ID+str(a[2])+FD  +ID+str(a[3])+FD+   FR
           else:
             texto=texto+IR  +ih+str(cont)+fh   +ID+str(a[0])+FD   +ID+str(a[1])+FD  +ID+str(a[2])+FD  +ID+str(a[3])+FD+   FR
           cont+=1
@@ -148,7 +152,8 @@ def menuHtml(array,limite):
       if contCuatro%4==0:#PARA CONTAR SECCION|NOMBRE|NUMERO|DESCRIPCION
         if limite>=float(array[a-1][0]):#LIMITE DE LOS OBJETOS
           #ID|NOMBRE|NUMERO|DESCRIPCION
-          subPrecio=subTitulo+str(array[a-3][0])+sptF+  precio+'Q'+str(array[a-1][0])+sptF#ID|PRECIO
+          numDosD=array[a-1][0]
+          subPrecio=subTitulo+str(array[a-3][0])+sptF+  precio+'Q'+str(f"{numDosD:.2f}")+sptF#ID|PRECIO
           textoM=textoS+str(array[a][0])+sptF#TEXTO
           if parImpar%2==0:
             texto=texto+productoI+colMd6+  subPrecio +divF+ colMd6+ textoM +divF+productoF
@@ -186,7 +191,7 @@ def Menu(txt):
   f.close()#cerar
   webbrowser.open_new_tab('Menu.html')
 #---------------------
-def facturaHtml(menu,orden,numeroF):
+def facturaHtml(menu,orden,numeroF):#SIRVE PARA HACER OTRA LISTA DE
   contCuatro=0#contador para id nombre numero descripcion0
   contPar=0#contador para id cantidad
   listaMenu=[]#id,nombre,numero
@@ -209,7 +214,7 @@ def facturaHtml(menu,orden,numeroF):
           listaOrden.append([orden[a][0],orden[a-1][0]])
           contPar=0
   total=0
-#SIRVE PARA HACER OTRA LISTA DE
+
   for a in listaOrden:#si id(menu)=id(orden)
     for b in listaMenu:
       if a[0].lower()==b[0].lower():
@@ -267,12 +272,16 @@ def facturaHtml(menu,orden,numeroF):
   for a in despacho:
     #                    cantidad             concepto              precio                total
     #                   1                       bebida 1              Q10.0                 Q10.0   
-    texto=texto+tri+tdi+str(a[0])+tdf  +tdi+str(a[1])+tdf  +tdi+'Q'+str(a[2])+tdf   +tdi+'Q'+str(a[3])+tdf+trf
+    numDosDa=a[2]
+    numDosDb=a[3]
+    texto=texto+tri+tdi+str(a[0])+tdf  +tdi+str(a[1])+tdf  +tdi+'Q'+str(f"{numDosDa:.2f}")+tdf   +tdi+'Q'+str(f"{numDosDb:.2f}")+tdf+trf
   texto=texto+fintTabla
   texto=texto+inicioTablaG
+  #f"{total:.2f}"
   #                       subtotal     ->        5                         porpina(8%)            ->                                 25
-  texto=texto+tri+tdL+"sub total"+tdf   +tdR+str(total)+tdf+trf    +tri+tdL+"Propina:("+str(float(orden[3][0])*100)+"%)"+tdf   +tdR+"Q"+str(propina)+tdf+trf
-  texto=texto+tri+tdL+"Total"+tdf   +tdR+"Q"+str(TotalMasPropina)+tdf+trf     +fintTabla
+  
+  texto=texto+tri+tdL+"sub total"+tdf   +tdR+"Q"+str(f"{total:.2f}")+tdf+trf    +tri+tdL+"Propina:("+str(float(orden[3][0])*100)+"%)"+tdf   +tdR+"Q"+str(f"{propina:.2f}")+tdf+trf
+  texto=texto+tri+tdL+"Total"+tdf   +tdR+"Q"+str(f"{TotalMasPropina:.2f}")+tdf+trf     +fintTabla
 
   factura(texto)
   numeroF+=1
