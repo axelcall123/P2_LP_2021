@@ -138,4 +138,15 @@ def xd():
     numDosD=float(num)
     print(str(fecha)+" "+f"{numDosD:.2f}")
 
-xd()
+
+
+def asd():
+    dot = graphviz.Digraph(comment='SI')
+    dot.node('A', 'King Arthur')
+    dot.node('B', 'Sir Bedevere the Wise')
+    dot.node('L', 'Sir Lancelot the Brave')
+
+    dot.edges(['AB', 'AL'])
+    dot.render('PDF/Hola', view=True)
+
+asd()

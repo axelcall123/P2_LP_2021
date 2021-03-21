@@ -18,7 +18,8 @@ def arbol(T):
         elif T[a][4]=='ID' or T[a][4]=='NOMBRE' or T[a][4]=='NUMERO' or T[a][4]=='DESCRIPCION':
             cont+=1  
             if cont%4==0:#           NOMBRE          NUMERO         DESCRIPCION
-                nod.node(caracter,T[a-2][0]+'   '+"Q"+str(T[a-1][0])+'\n'+T[a][0])#
+                numDosD=T[a-1][0]
+                nod.node(caracter,T[a-2][0]+'   '+"Q"+str(f"{numDosD:.2f}")+'\n'+T[a][0])#
                 array_nod.append(nod_principal+caracter)#UNIR PRINCIPAL CON LOS SUB-SUB
                 cont_nod+=1#NUEVO NODO
                 cont=0#CONT = 0 PARA MULTIPLO DE 4

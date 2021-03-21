@@ -1,43 +1,8 @@
 // SI
 digraph {
-	A [label="RESTAURANTE
-BLABLA"]
-	B [label=BEBIDA]
-	C [label="PAPAYA   10.0
----"]
-	D [label="SANDIA   20.0
-???"]
-	E [label=PASTEL]
-	F [label="FRAMBUESA   5.0
-***"]
-	G [label="F RESA   10.0
-¨¨"]
-	H [label=PIZZA]
-	I [label="PIÑA   25.0
-##"]
-	J [label=HELAODS]
-	K [label="A   25.0
-##"]
-	L [label="B   25.0
-##"]
-	M [label="C   25.0
-##"]
-	N [label="D   25.0
-##"]
-	O [label="E   25.0
-##"]
+	A [label="King Arthur"]
+	B [label="Sir Bedevere the Wise"]
+	L [label="Sir Lancelot the Brave"]
 	A -> B
-	B -> C
-	B -> D
-	A -> E
-	E -> F
-	E -> G
-	A -> H
-	H -> I
-	A -> J
-	J -> K
-	J -> L
-	J -> M
-	J -> N
-	J -> O
+	A -> L
 }
