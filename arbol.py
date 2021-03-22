@@ -2,6 +2,7 @@ import graphviz
 def arbol(Tu):
     #SE PUDE BORRAR DESDE AQUI XDXD
     cont=0
+    #[item,columna,fila,token,token_especifico]
     array_sup=[]#[[SECCION],[ID],[NOMBRE],[PRECIO],[DESCRIPCION]]
     array_ayuda=[]#TEMPORAMENTE LA SECCION
     array_seccion=[]#ARRAY SECCION
@@ -20,7 +21,7 @@ def arbol(Tu):
     for a in range(len(array_sup)):
         for b in range(len(array_sup)):
             if b+1<len(array_sup):#PARA MIRAR ANTES DEQUE CREO UN ERROR AL TOMAR LA ULTIMA MATRIZ
-                if float(array_sup[b][3][0])<float(array_sup[b+1][3][0]):
+                if float(array_sup[b][3][0])<float(array_sup[b+1][3][0]):#MIRANDO->ARRAY->Pos_NUMERO->numero
                     continue
                 else:#SI !5<4 CAMBIA LA POSICION DE LA MATRIZ
                     array_uno=array_sup[b]
