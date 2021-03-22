@@ -1,26 +1,26 @@
 // SI
 digraph {
 	A [label="RESTAURANTE
-restaurante"]
+Restaurante LFP"]
 	B [label=Bebidas1]
-	C [label="Bebida #1   Q10.00
-Descripción Bebida 1"]
-	D [label="Bebida #2   Q20.00
+	C [label="Bebida #2   Q15.00
 Descripción Bebida 2"]
-	E [label="Bebida #3   Q50.25
+	D [label="Bebida #1   Q50.00
+Descripción Bebida 1"]
+	E [label="Bebida #3   Q100.56
 Descripción Bebida 3"]
 	F [label=Desayunos]
-	G [label="Desayuno 1   Q30.00
+	G [label="Desayuno 1   Q10.00
 Descripción Desayuno 1"]
-	H [label="Desayuno 2   Q40.00
-Descripción Desayuno 2"]
-	I [label="Desayuno 3   Q50.00
+	H [label="Desayuno 3   Q15.00
 Descripción Desayuno 3"]
+	I [label="Desayuno 2   Q25.00
+Descripción Desayuno 2"]
 	J [label=Pie]
-	K [label="Pie 1   Q70.00
+	K [label="Pie 1   Q80.00
 Descripción pie 1"]
 	L [label=" Postres"]
-	M [label="Postre 1   Q60.00
+	M [label="Postre 1   Q95.00
 Descripción Postre 1"]
 	A -> B
 	B -> C
